@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: BugTrackPro API
+  version: 1.0.0
+  description: RESTful API for bug tracking and task management
+servers:
+  - url: http://localhost:5000/api
+paths:
+  /register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User registered
+        '409':
+          description: Email already in use
+  /login:
+    post:
+      summary: Authenticate user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Authenticated
+  /projects:
+    get:
+      summary: List all projects
+      responses:
+        '200':
+          description: List of projects
+    post:
+      summary: Create a new project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                createdBy:
+                  type: string
+      responses:
+        '201':
+          description: Project created
+  /issues:
+    post:
+      summary: Report a new issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                project:
+                  type: string
+                reportedBy:
+                  type: string
+      responses:
+        '201':
+          description: Issue created
+  /issues/{id}:
+    get:
+      summary: Get issue details
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Issue details 

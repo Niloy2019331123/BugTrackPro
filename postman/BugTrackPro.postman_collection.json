@@ -1,0 +1,61 @@
+{
+  "info": {
+    "name": "BugTrackPro API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "url": {"raw": "{{baseUrl}}/api/register", "host": ["{{baseUrl}}"], "path": ["api", "register"]},
+        "body": {"mode": "raw", "raw": "{\n  \"username\": \"user1\",\n  \"email\": \"user1@example.com\",\n  \"password\": \"password123\"\n}"}
+      }
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "url": {"raw": "{{baseUrl}}/api/login", "host": ["{{baseUrl}}"], "path": ["api", "login"]},
+        "body": {"mode": "raw", "raw": "{\n  \"email\": \"user1@example.com\",\n  \"password\": \"password123\"\n}"}
+      }
+    },
+    {
+      "name": "List Projects",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "{{baseUrl}}/api/projects", "host": ["{{baseUrl}}"], "path": ["api", "projects"]}
+      }
+    },
+    {
+      "name": "Create Project",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "url": {"raw": "{{baseUrl}}/api/projects", "host": ["{{baseUrl}}"], "path": ["api", "projects"]},
+        "body": {"mode": "raw", "raw": "{\n  \"name\": \"Project X\",\n  \"description\": \"A test project\",\n  \"createdBy\": \"<userId>\"\n}"}
+      }
+    },
+    {
+      "name": "Create Issue",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+        "body": {"mode": "raw", "raw": "{\n  \"title\": \"Bug 1\",\n  \"description\": \"A bug\",\n  \"project\": \"<projectId>\",\n  \"reportedBy\": \"<userId>\"\n}"}
+      }
+    },
+    {
+      "name": "Get Issue by ID",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "{{baseUrl}}/api/issues/<issueId>", "host": ["{{baseUrl}}"], "path": ["api", "issues", "<issueId>"]}
+      }
+    }
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:5000"}
+  ]
+} 
