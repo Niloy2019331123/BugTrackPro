@@ -199,10 +199,3 @@ bugtrackpro/
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
-
-## License
-
-This project is open source and available under the MIT License. 
-=======
-# BugTrackPro
->>>>>>> dbeaef2a47782ce1672059610c9be1b11b713921
