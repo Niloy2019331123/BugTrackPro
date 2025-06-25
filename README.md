@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BugTrackPro
 
 A comprehensive bug tracking and project management application built with Node.js, Express, MongoDB, and React.
@@ -202,3 +203,6 @@ bugtrackpro/
 ## License
 
 This project is open source and available under the MIT License. 
+=======
+# BugTrackPro
+>>>>>>> dbeaef2a47782ce1672059610c9be1b11b713921
