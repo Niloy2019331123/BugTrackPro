@@ -27,17 +27,15 @@ exports.createIssue = async (req, res, next) => {
       tags 
     } = req.body;
     
-    if (!title || !project) {
-      return res.status(400).json({ error: 'Title and project are required.' });
+    if (!title || !project || !dueDate) {
+      return res.status(400).json({ error: 'Title, project, and due date are required.' });
     }
 
-    if (dueDate) {
-      const due = new Date(dueDate);
-      const now = new Date();
-      now.setHours(0,0,0,0);
-      if (due < now) {
-        return res.status(400).json({ error: 'Due date cannot be in the past.' });
-      }
+    const due = new Date(dueDate);
+    const now = new Date();
+    now.setHours(0,0,0,0);
+    if (due < now) {
+      return res.status(400).json({ error: 'Due date cannot be in the past.' });
     }
 
     const issueData = { 

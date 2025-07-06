@@ -21,7 +21,7 @@ const issueSchema = new mongoose.Schema({
   project: { type: mongoose.Schema.Types.ObjectId, ref: 'Project', required: true },
   reportedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  dueDate: { type: Date },
+  dueDate: { type: Date, required: true },
   tags: [{ type: String }],
 }, { timestamps: true });
 

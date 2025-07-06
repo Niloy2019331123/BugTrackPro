@@ -5,57 +5,229 @@
   },
   "item": [
     {
-      "name": "Register User",
-      "request": {
-        "method": "POST",
-        "header": [{"key": "Content-Type", "value": "application/json"}],
-        "url": {"raw": "{{baseUrl}}/api/register", "host": ["{{baseUrl}}"], "path": ["api", "register"]},
-        "body": {"mode": "raw", "raw": "{\n  \"username\": \"user1\",\n  \"email\": \"user1@example.com\",\n  \"password\": \"password123\"\n}"}
-      }
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/register", "host": ["{{baseUrl}}"], "path": ["api", "register"]},
+            "body": {"mode": "raw", "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"password123\"\n}"}
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/login", "host": ["{{baseUrl}}"], "path": ["api", "login"]},
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"password123\"\n}"}
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{baseUrl}}/api/users", "host": ["{{baseUrl}}"], "path": ["api", "users"]}
+          }
+        }
+      ]
     },
     {
-      "name": "Login User",
-      "request": {
-        "method": "POST",
-        "header": [{"key": "Content-Type", "value": "application/json"}],
-        "url": {"raw": "{{baseUrl}}/api/login", "host": ["{{baseUrl}}"], "path": ["api", "login"]},
-        "body": {"mode": "raw", "raw": "{\n  \"email\": \"user1@example.com\",\n  \"password\": \"password123\"\n}"}
-      }
+      "name": "Projects",
+      "item": [
+        {
+          "name": "List Projects",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{baseUrl}}/api/projects", "host": ["{{baseUrl}}"], "path": ["api", "projects"]}
+          }
+        },
+        {
+          "name": "Create Project (with createdBy)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/projects", "host": ["{{baseUrl}}"], "path": ["api", "projects"]},
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"Test Project\",\n  \"description\": \"A test project created via Postman\",\n  \"createdBy\": \"{{userId}}\"\n}"}
+          }
+        },
+        {
+          "name": "Create Project (without createdBy)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/projects", "host": ["{{baseUrl}}"], "path": ["api", "projects"]},
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"Demo Project\",\n  \"description\": \"A demo project without createdBy field\"\n}"}
+          }
+        },
+        {
+          "name": "Get Project by ID",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{baseUrl}}/api/projects/{{projectId}}", "host": ["{{baseUrl}}"], "path": ["api", "projects", "{{projectId}}"]}
+          }
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/projects/{{projectId}}", "host": ["{{baseUrl}}"], "path": ["api", "projects", "{{projectId}}"]},
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"Updated Project Name\",\n  \"description\": \"Updated project description\"\n}"}
+          }
+        },
+        {
+          "name": "Delete Project",
+          "request": {
+            "method": "DELETE",
+            "url": {"raw": "{{baseUrl}}/api/projects/{{projectId}}", "host": ["{{baseUrl}}"], "path": ["api", "projects", "{{projectId}}"]}
+          }
+        }
+      ]
     },
     {
-      "name": "List Projects",
-      "request": {
-        "method": "GET",
-        "url": {"raw": "{{baseUrl}}/api/projects", "host": ["{{baseUrl}}"], "path": ["api", "projects"]}
-      }
-    },
-    {
-      "name": "Create Project",
-      "request": {
-        "method": "POST",
-        "header": [{"key": "Content-Type", "value": "application/json"}],
-        "url": {"raw": "{{baseUrl}}/api/projects", "host": ["{{baseUrl}}"], "path": ["api", "projects"]},
-        "body": {"mode": "raw", "raw": "{\n  \"name\": \"Project X\",\n  \"description\": \"A test project\",\n  \"createdBy\": \"<userId>\"\n}"}
-      }
-    },
-    {
-      "name": "Create Issue",
-      "request": {
-        "method": "POST",
-        "header": [{"key": "Content-Type", "value": "application/json"}],
-        "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
-        "body": {"mode": "raw", "raw": "{\n  \"title\": \"Bug 1\",\n  \"description\": \"A bug\",\n  \"project\": \"<projectId>\",\n  \"reportedBy\": \"<userId>\"\n}"}
-      }
-    },
-    {
-      "name": "Get Issue by ID",
-      "request": {
-        "method": "GET",
-        "url": {"raw": "{{baseUrl}}/api/issues/<issueId>", "host": ["{{baseUrl}}"], "path": ["api", "issues", "<issueId>"]}
-      }
+      "name": "Issues",
+      "item": [
+        {
+          "name": "📋 SETUP GUIDE - Read First",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{baseUrl}}/api/users", "host": ["{{baseUrl}}"], "path": ["api", "users"]},
+            "description": "1. Run 'Register User' first\n2. Run 'Login User' and copy the 'id' from response\n3. Run 'Create Project' and copy the '_id' from response\n4. Update collection variables with these IDs\n5. Then use 'Create Issue' requests"
+          }
+        },
+        {
+          "name": "List Issues",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]}
+          }
+        },
+        {
+          "name": "Create Issue (Complete Example)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Test Bug\",\n  \"description\": \"This is a test bug created via Postman\",\n  \"project\": \"{{projectId}}\",\n  \"reportedBy\": \"{{userId}}\",\n  \"priority\": \"High\",\n  \"type\": \"Bug\",\n  \"status\": \"Open\",\n  \"dueDate\": \"{{dueDate}}\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (Working Example - No Variables)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Sample Bug Report\",\n  \"description\": \"This is a sample bug that should work without setting up variables\",\n  \"project\": \"507f1f77bcf86cd799439011\",\n  \"reportedBy\": \"507f1f77bcf86cd799439012\",\n  \"priority\": \"Medium\",\n  \"type\": \"Bug\",\n  \"status\": \"Open\",\n  \"dueDate\": \"2024-12-31\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (Minimal Required Fields)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Minimal Bug\",\n  \"project\": \"507f1f77bcf86cd799439011\",\n  \"dueDate\": \"2024-12-31\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (Your Format)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"bal\",\n  \"description\": \"A bug\",\n  \"project\": \"{{projectId}}\",\n  \"reportedBy\": \"{{userId}}\",\n  \"dueDate\": \"2029-08-23\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (with reportedBy)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Test Bug\",\n  \"description\": \"This is a test bug created via Postman\",\n  \"project\": \"{{projectId}}\",\n  \"reportedBy\": \"{{userId}}\",\n  \"priority\": \"High\",\n  \"type\": \"Bug\",\n  \"status\": \"Open\",\n  \"dueDate\": \"{{dueDate}}\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (without reportedBy)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Demo Issue\",\n  \"description\": \"A demo issue without reportedBy field\",\n  \"project\": \"{{projectId}}\",\n  \"priority\": \"Medium\",\n  \"type\": \"Task\",\n  \"status\": \"Open\",\n  \"dueDate\": \"{{dueDate}}\"\n}"}
+          }
+        },
+        {
+          "name": "Get Issue by ID",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{baseUrl}}/api/issues/{{issueId}}", "host": ["{{baseUrl}}"], "path": ["api", "issues", "{{issueId}}"]}
+          }
+        },
+        {
+          "name": "Update Issue",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues/{{issueId}}", "host": ["{{baseUrl}}"], "path": ["api", "issues", "{{issueId}}"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Updated Bug Title\",\n  \"description\": \"Updated bug description\",\n  \"status\": \"In Progress\",\n  \"priority\": \"Medium\",\n  \"dueDate\": \"{{dueDate}}\"\n}"}
+          }
+        },
+        {
+          "name": "Delete Issue",
+          "request": {
+            "method": "DELETE",
+            "url": {"raw": "{{baseUrl}}/api/issues/{{issueId}}", "host": ["{{baseUrl}}"], "path": ["api", "issues", "{{issueId}}"]}
+          }
+        },
+        {
+          "name": "Create Issue (Missing Due Date - Should Fail)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Test Bug Without Due Date\",\n  \"description\": \"This should fail due to missing due date\",\n  \"project\": \"{{projectId}}\",\n  \"reportedBy\": \"{{userId}}\",\n  \"priority\": \"High\",\n  \"type\": \"Bug\",\n  \"status\": \"Open\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (Past Due Date - Should Fail)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Test Bug With Past Due Date\",\n  \"description\": \"This should fail due to past due date\",\n  \"project\": \"{{projectId}}\",\n  \"reportedBy\": \"{{userId}}\",\n  \"priority\": \"High\",\n  \"type\": \"Bug\",\n  \"status\": \"Open\",\n  \"dueDate\": \"2020-01-01\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (Missing Title - Should Fail)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"description\": \"This should fail due to missing title\",\n  \"project\": \"{{projectId}}\",\n  \"reportedBy\": \"{{userId}}\",\n  \"priority\": \"High\",\n  \"type\": \"Bug\",\n  \"status\": \"Open\",\n  \"dueDate\": \"{{dueDate}}\"\n}"}
+          }
+        },
+        {
+          "name": "Create Issue (Missing Project - Should Fail)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/issues", "host": ["{{baseUrl}}"], "path": ["api", "issues"]},
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Test Bug Without Project\",\n  \"description\": \"This should fail due to missing project\",\n  \"reportedBy\": \"{{userId}}\",\n  \"priority\": \"High\",\n  \"type\": \"Bug\",\n  \"status\": \"Open\",\n  \"dueDate\": \"{{dueDate}}\"\n}"}
+          }
+        }
+      ]
     }
   ],
   "variable": [
-    {"key": "baseUrl", "value": "http://localhost:5000"}
+    {"key": "baseUrl", "value": "http://localhost:5000"},
+    {"key": "userId", "value": "507f1f77bcf86cd799439012"},
+    {"key": "projectId", "value": "507f1f77bcf86cd799439011"},
+    {"key": "issueId", "value": "507f1f77bcf86cd799439013"},
+    {"key": "dueDate", "value": "2024-12-31"},
+    {"key": "project_id", "value": "507f1f77bcf86cd799439011"},
+    {"key": "my_id", "value": "507f1f77bcf86cd799439012"}
   ]
 } 
