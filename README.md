@@ -190,31 +190,3 @@ Use the provided Postman collection:
 2. Deploy the `build` folder to your hosting service
 3. Update API endpoints in the frontend code
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -am 'Add feature'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- React.js team for the amazing framework
-- MongoDB team for the database
-- All contributors and users
-
-## 📞 Support
-
-If you have any questions or need help, please:
-- Open an issue on GitHub
-- Check the documentation in the `docs/` folder
-- Review the Postman collection for API examples
-
----
-
-**Made with ❤️ by [Your Name]**
