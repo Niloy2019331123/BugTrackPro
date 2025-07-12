@@ -1,4 +1,5 @@
 const Project = require('../models/Project');
+const Issue = require('../models/Issue');
 
 exports.listProjects = async (req, res, next) => {
   try {
@@ -64,9 +65,22 @@ exports.updateProject = async (req, res, next) => {
 
 exports.deleteProject = async (req, res, next) => {
   try {
-    const project = await Project.findByIdAndDelete(req.params.id);
+    const projectId = req.params.id;
+    
+    // First, delete all issues associated with this project
+    const deleteIssuesResult = await Issue.deleteMany({ project: projectId });
+    console.log(`Deleted ${deleteIssuesResult.deletedCount} issues for project ${projectId}`);
+    
+    // Then delete the project
+    const project = await Project.findByIdAndDelete(projectId);
+    console.log(project);
+    console.log(req.params.id);
     if (!project) return res.status(404).json({ error: 'Project not found.' });
-    res.json({ message: 'Project deleted.' });
+    
+    res.json({ 
+      message: 'Project deleted.',
+      deletedIssuesCount: deleteIssuesResult.deletedCount
+    });
   } catch (err) {
     next(err);
   }
