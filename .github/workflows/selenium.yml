@@ -1,0 +1,49 @@
+name: Selenium UI Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install wait-on
+        run: npm install -g wait-on
+
+      - name: Install backend dependencies
+        run: npm install
+
+      - name: Install frontend dependencies
+        run: cd bugtrackpro-frontend && npm install
+
+      - name: Start backend
+        run: npm start &
+        env:
+          PORT: 5000
+
+      - name: Start frontend
+        run: cd bugtrackpro-frontend && npm start &
+        env:
+          PORT: 3000
+
+      - name: Wait for backend
+        run: wait-on http://localhost:5000/api/users
+
+      - name: Wait for frontend
+        run: wait-on http://localhost:3000
+
+      - name: Run Selenium tests
+        run: cd bugtrackpro-frontend && npm run selenium:test 
